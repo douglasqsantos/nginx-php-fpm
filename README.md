@@ -223,9 +223,9 @@ networks:
 ```
 
 ---
-* Hub Docker: [See Now](https://hub.docker.com/r/linuxsolutions/server-web-nginx-php-fpm)
-* GitHub Repository: [See Now](https://github.com/Open-Linux-Solutions/server-web-nginx-php-fpm)
-* Project website: [See Now](https://linuxsolutions.xyz/web-server-nginx-php-fpm)
+* Hub Docker: [See Now](https://hub.docker.com/r/fuerzastudio/nginx-php-fpm)
+* GitHub Repository: [See Now](https://github.com/fuerzastudio/nginx-php-fpm)
+* Project website: [See Now](https://fuerzastudio.com)
 ---
 
 License
