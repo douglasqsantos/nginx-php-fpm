@@ -73,6 +73,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php7.4-intl \
             php7.4-xml \
             php7.4-sqlite3 \
+            php7.4-soap \
             php-gmp \
             php-pear \
     && pecl -d php_suffix=7.4 install -o -f redis memcached imagick mcrypt-1.0.3 \
