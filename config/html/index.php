@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="images/devops.png">
+    <link rel="icon" type="image/png" href="images/Wordpress-icon.png">
 
 </head>
 <body>
@@ -27,7 +27,7 @@
         <h4>Congratulations!</h4>
         <p>You have successfully deployed a <strong>docker</strong> container running our <strong>NGINX</strong> with <strong>PHP-FPM 7.4</strong> image</p>
         <p><strong>NGINX: </strong>v<?php echo $_ENV['NGINX_VERSION'] ?><br><strong>PHP-FPM: </strong>v<?php echo phpversion(); ?><br><strong>HOSTNAME: </strong><?php echo gethostname(); ?><br><strong>WEB ROOT: </strong><?php echo $_ENV['DOCUMENT_ROOT'] ?></p>
-          <em>Thank you for using <a style="text-decoration:none" href="https://fuerzastudio.com" target="_blank">Jônatan Gouveia</a></em>
+          <em>Thank you for using <a style="text-decoration:none" href="https://fuerzastudio.com.br" target="_blank">Jônatan Gouveia | DevOps</a></em>
       </div>
     </div>
   </div>

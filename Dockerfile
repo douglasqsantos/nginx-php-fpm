@@ -2,23 +2,23 @@ FROM debian:buster-slim
 
 LABEL maintainer="Jônatan Gouveia jonatan@fuerzastudio.com.br"
 
-LABEL version="1.0.0"
+LABEL version="1.0.3"
 
-LABEL company="FuerzaStudio."
+LABEL company="Fuerza Studio"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.19.3-1~buster
+ENV NGINX_VERSION 1.19.0-1~buster
 ENV php_conf /etc/php/7.4/fpm/php.ini
 ENV fpm_conf /etc/php/7.4/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 1.10.7
+ENV COMPOSER_VERSION 2.0.13
 ENV NGINX_REDIS_MODULE 0.3.8
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
     && apt-get update \
-    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates software-properties-common \
+    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
 	  found=''; \
@@ -38,12 +38,8 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
             apt-utils \
-            vim \
-            zip \
-            unzip \
             python-pip \
             python-setuptools \
-            git \
             gcc \
             make \
             autoconf \
@@ -53,8 +49,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             libmemcached-dev \
             libmemcached11 \
             libmagickwand-dev \
-            ffmpeg \
-            mariadb-client \
             nginx=${NGINX_VERSION} \
             php7.4-fpm \
             php7.4-cli \
@@ -73,7 +67,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php7.4-intl \
             php7.4-xml \
             php7.4-sqlite3 \
-            php7.4-soap \
             php-gmp \
             php-pear \
     && pecl -d php_suffix=7.4 install -o -f redis memcached imagick mcrypt-1.0.3 \
@@ -133,10 +126,6 @@ ADD ./config/supervisord.conf /etc/supervisord.conf
 
 # Override nginx's default config
 ADD ./config/default.conf /etc/nginx/conf.d/default.conf
-
-# Adding Support ACL
-ADD ./config/acl.conf /etc/nginx/common/acl.conf
-ADD ./config/htpasswd /etc/nginx/htpasswd
 
 # Nginx - Customized configurations, other sites and possibilities to add and enable modules.
 ADD ./config/nginx.conf /etc/nginx/nginx.conf

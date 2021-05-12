@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Removing brotli in Nginx
 
-## [1.0.1] - Out, 23, 2020
+## [1.0.2] - Out, 23, 2020
 ### Added
 - Adding soap
+
+## [1.0.8] - May, 12, 2021
+### Update
+- Upgrade version PHP and Composer
+- Clean packages install
+- Change from image debian
+- Update Readme
+- Removing acl and htpasswd

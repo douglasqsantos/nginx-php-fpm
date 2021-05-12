@@ -1,13 +1,13 @@
 # WebServer Nginx and PHP-FPM
 
-[![N|Solid](https://linuxsolutions.xyz/linuxSolution.jpeg)](https://linuxsolutions.xyz)
+[![N|Solid](https://www.fuerzastudio.com.br/wp-content/themes/fuerza/resources/img/logo.png)](https://linuxsolutions.xyz)
 
 Image ready to build your web server with Nginx and PHP-FPM.
 
 Current versions composed in this image;
-  - [Nginx](http://nginx.org/en/download.html) 1.19.3
-  - [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) 7.4.x
-  - [Composer](https://getcomposer.org/doc/00-intro.md) 1.10.7
+  - [Nginx](http://nginx.org/en/download.html) 1.19.0
+  - [PHP-FPM](https://www.php.net/manual/en/install.fpm.php) 7.4.18
+  - [Composer](https://getcomposer.org/doc/00-intro.md) 2.0.13
   - [WP-CLI](https://developer.wordpress.org/cli/commands/)
 
 # Features!
@@ -46,19 +46,7 @@ $ include /etc/nginx/sites-enabled/*.conf;
 $ include /etc/nginx/upstream/*.conf;
 ```
 
-* Support ACL HTTP authentication
-
-```sh
-$ include common/acl.conf;
-```
-
-The configuration file is located in /etc/nginx/htpasswd
-You can generate credentials on this website: https://www.web2generators.com/apache-tools/htpasswd-generator
-To the credentials defined by default:
-
-```sh
-# htpasswd: fuerzastudio | create-your-password
-```
+---
 
 * Example to run the server.
 
@@ -87,7 +75,7 @@ services:
   
   server-web:
     image: fuerzastudio/nginx-php-fpm
-    container_name: webserver
+    container_name: webserver 
     restart: always
     volumes:
       - ./custom-site.conf:/etc/nginx/conf.d/default.conf #Example below
@@ -133,6 +121,13 @@ server {
     # Add stdout logging
     error_log /dev/stdout info;
     access_log /dev/stdout;
+
+    # reduce the data that needs to be sent over network
+    gzip on;
+    gzip_min_length 10240;
+    gzip_proxied expired no-cache no-store private auth;
+    gzip_types text/plain text/css text/xml application/json text/javascript application/x-javascript application/xml;
+    gzip_disable "MSIE [1-6]\.";
 
     location / {
         # First attempt to serve request as file, then
@@ -182,7 +177,7 @@ services:
   
   server-web:
     image: fuerzastudio/nginx-php-fpm
-    container_name: webserver
+    container_name: nginx-php-fpm 
     restart: always
     volumes:
       - ./custom-site.conf:/etc/nginx/conf.d/default.conf #Example below
@@ -197,7 +192,7 @@ services:
         ipv4_address: 171.28.5.10
     server-database:
     image: mariadb
-    container_name: database
+    container_name: database-mariadb
     restart: always
     volumes:
       - ./data:/var/lib/mysql
@@ -223,9 +218,9 @@ networks:
 ```
 
 ---
-* Hub Docker: [See Now](https://hub.docker.com/r/fuerzastudio/nginx-php-fpm)
-* GitHub Repository: [See Now](https://github.com/fuerzastudio/nginx-php-fpm)
-* Project website: [See Now](https://fuerzastudio.com)
+* Hub Docker: [See Now](https://hub.docker.com/r/linuxsolutions/server-web-nginx-php-fpm)
+* GitHub Repository: [See Now](https://github.com/Open-Linux-Solutions/server-web-nginx-php-fpm)
+* Project website: [See Now](https://linuxsolutions.xyz/web-server-nginx-php-fpm)
 ---
 
 License
