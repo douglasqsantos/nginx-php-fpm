@@ -2,7 +2,7 @@ FROM debian:buster-slim
 
 LABEL maintainer="Jônatan Gouveia jonatan@fuerzastudio.com.br"
 
-LABEL version="1.0.3"
+LABEL version="1.0.4"
 
 LABEL company="Fuerza Studio"
 
@@ -67,6 +67,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php7.4-intl \
             php7.4-xml \
             php7.4-sqlite3 \
+            php7.4-soap \
             php-gmp \
             php-pear \
     && pecl -d php_suffix=7.4 install -o -f redis memcached imagick mcrypt-1.0.3 \
